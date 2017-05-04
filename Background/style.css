@@ -60,8 +60,7 @@
 .multiple .dome-1 {
 	width: 300px;
     height: 140px;
-    border: 1px solid #999;
-    
+    border: 1px solid #999;    
     background-image: url(http://img.mukewang.com/54cf2365000140e600740095.jpg),
                       url(http://img.mukewang.com/54cf238a0001728d00740095.jpg),
                       url(http://img.mukewang.com/54cf23b60001fd9700740096.jpg);
