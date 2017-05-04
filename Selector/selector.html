@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<title>属性选择器</title>
+<style>
+    a[class^=column] {
+     background-color: red;   
+    }
+    a[href$=doc] {
+        background-color:green;
+    }
+    a[title*=box] {
+        background-color:blue;
+    }
+    /*根元素选择器，所选元素始终是HTML*/
+    :root{
+    	background:#eee;
+    }
+    /*:not 否定选择器。可以选择除某个元素之外的所有元素*/
+    form {
+	  width: 200px;
+	  margin: 20px auto;
+	}
+	form div {
+	  margin-bottom: 20px;
+	}
+	input:not([type="submit"]){
+	  border:1px solid red;
+	}
+	/*:empty 用来选择没有任何内容的元素，这里没有内容指的是一点内容都没有，哪怕是一个空格。*/
+	.empty p{
+	 background: orange;
+	 min-height: 30px;
+	}
+	.empty p:empty {
+	  display: none;
+	}​
+	/*:target*/
+	#apple:target {
+	  background: orange;
+	  color: #fff;
+	}
+	#jake:target {
+	  background: blue;
+	  color: #fff;
+	}
+	#aron:target {
+	  background: red;
+	  color: #fff;
+	}
+	:target p {
+	  background: orange;
+	  color: #fff;
+	}
+
+	/*:first-child 选择父元素的第一个子元素的元素*/
+	ol > li{
+	  font-size:20px;
+	  font-weight: bold;
+	  margin-bottom: 10px;
+	}
+
+	ol a {
+	  font-size: 16px;
+	  font-weight: normal;
+	}
+
+	ol > li:first-child{
+	  color: red;
+	}
+
+    /*:last-child 选择父元素的最后一个子元素的元素*/
+	.post {
+	  padding: 10px;
+	  border: 1px solid #ccc;
+	  width: 200px;
+	  margin: 20px auto;
+	}
+	.post p {
+	  margin:0 0 15px 0;
+	}
+
+	.post p:last-child {
+	  margin-bottom:0;
+	}
+
+    /*:nth-child 选择父元素的最后一个子元素的元素
+     * nth-child(n)”选择器用来定位某个父元素的一个或多个特定的子元素。其中“n”是其参数，而且可以是整数值(1,2,3,4)，也可以是表达式(2n+1、-n+5)和关键词(odd、even)，但参数n的起始值始终是1，而不是0。也就是说，参数n的值为0时，选择器将选择不到任何匹配的元素
+    */
+	.nth > li:nth-child(2n+1){
+      background: orange;
+    }
+    /*:nth-last-child(n) 从某父元素的最后一个子元素开始计算，来选择特定的元素
+    */
+    .nth > li:nth-last-child(5){
+	  background: orange;
+	}
+    /*:first-of-type: 选择器类似于“:first-child”选择器，不同之处就是指定了元素的类型,其主要用来定位一个父元素下的某个类型的第一个子元素。*/
+	.firtoftype {
+	  width: 500px;
+	  margin: 20px auto;
+	  padding: 10px;
+	  border: 1px solid #ccc;
+	  color: #fff;
+	}
+	.firtoftype > div {
+	  background: green;
+	}
+	.firtoftype > p {
+	  background: blue;
+	}
+	/*我要改变第一个段落的背景为橙色*/
+	.firtoftype > p:first-of-type {
+	  background: orange;
+	}
+
+	/*:nth-of-type(n) 和“:nth-child(n)”选择器非常类似，不同的是它只计算父元素中指定的某种类型的子元素。当某个元素中的子元素不单单是同一种类型的子元素时，使用“:nth-of-type(n)”选择器来定位于父元素中某种类型的子元素是非常方便和有用的。在“:nth-of-type(n)”选择器中的“n”和“:nth-child(n)”选择器中的“n”参数也一样，可以是具体的整数，也可以是表达式，还可以是关键词*/
+	.nthoftype > p:nth-of-type(2n){
+	  background: orange;
+	}
+	/*:last-of-type 和“:first-of-type”选择器功能是一样的，不同的是他选择是父元素下的某个类型的最后一个子元素。*/
+	.lastoftype > p:last-of-type{
+	  background: orange;
+	}
+	/*:nth-last-of-type(n)和“:nth-of-type(n)”选择器是一样的，选择父元素中指定的某种子元素类型，但它的起始方向是从最后一个子元素开始，而且它的使用方法类似于上节中介绍的“:nth-last-child(n)”选择器一样。*/
+	.nthlastoftype > p:nth-last-of-type(3){
+	  background: orange;
+	}
+	/*:only-child 选择器选择的是父元素中只有一个子元素，而且只有唯一的一个子元素。也就是说，匹配的元素的父元素中仅有一个子元素，而且是一个唯一的子元素。*/
+	.onlychild li {
+	  background: green;
+	  padding: 10px;
+	  margin-bottom: 5px;
+	}
+	.onlychild li:only-child {
+	  background: orange;
+	}
+	/*“:only-of-type”是表示一个元素他有很多个子元素，而其中只有一种类型的子元素是唯一的，使用“:only-of-type”选择器就可以选中这个元素中的唯一一个类型子元素。*/
+	.onlyoftype > div:only-of-type {
+	  background: red;
+	}
+</style>
+</head>
+<body>
+<a href="##" class="columnNews">我的背景想变成红色</a>
+<a href="##" class="columnVideo">我的背景想变成红色</a>
+<a href="##" class="columnAboutUs">我的背景想变成红色</a><br/>
+<a href="1.doc">我的背景想变成绿色</a>
+<a href="2.doc">我的背景想变成绿色</a><br/>
+<a href="##" title="this is a box">我的背景想变成蓝色</a>
+<a href="##" title="box1">我的背景想变成蓝色</a>
+<a href="##" title="there is two boxs">我的背景想变成蓝色</a>
+<form action="#">
+  <div>
+    <label for="name">Text Input:</label>
+    <input type="text" name="name" id="name" placeholder="John Smith" />
+  </div>
+  <div>
+    <label for="name">Password Input:</label>
+    <input type="text" name="name" id="name" placeholder="John Smith" />
+  </div>
+  <div>
+    <input type="submit" value="Submit" />
+  </div>
+</form>  ​
+<div class="empty">
+  <p>我是一个段落</p>
+  <p> </p>
+  <p></p>​
+</div>
+
+<h2><a href="#apple">Brand</a></h2>
+<div class="menuSection" id="apple">
+  content for apple
+</div>
+<h2><a href="#jake">Brand</a></h2>
+<div class="menuSection" id="jake">
+ content for jake
+</div>
+<h2><a href="#aron">Brand</a></h2>
+<div class="menuSection" id="aron">
+    content for aron
+</div>
+
+<div class="menuSection" id="brand">
+    <h2><a href="#brand">Brand</a></h2>
+    <p id="brand">content for Brand</p>
+</div>
+
+<ol>
+  <li><a href="##">Link1</a></li>
+  <li><a href="##">Link2</a></li>
+  <li><a href="##">link3</a></li>
+</ol>
+
+<div class="post">
+  <p>第一段落</p>
+  <p>第二段落</p>
+  <p>第三段落</p>
+  <p>第四段落</p>
+  <p>第五段落</p>
+</div>​
+
+<ol class="nth">
+  <li>item1</li>
+  <li>item2</li>
+  <li>item3</li>
+  <li>item4</li>
+  <li>item5</li>
+  <li>item6</li>
+  <li>item7</li>
+  <li>item8</li>
+  <li>item9</li>
+  <li>item10</li>
+</ol>​
+
+<div class="firtoftype">
+  <div>我是一个块元素，我是.wrapper的第一个子元素</div>
+  <p>我是一个段落元素，我是不是.wrapper的第一个子元素，但是他的第一个段落元素</p>
+  <p>我是一个段落元素</p>
+  <div>我是一个块元素</div>
+</div>
+
+<div class="nthoftype">
+  <div>我是一个Div元素</div>
+  <p>我是一个段落元素</p>
+  <div>我是一个Div元素</div>
+  <p>我是一个段落</p>
+  <div>我是一个Div元素</div>
+  <p>我是一个段落</p>
+  <div>我是一个Div元素</div>
+  <p>我是一个段落</p>
+  <div>我是一个Div元素</div>
+  <p>我是一个段落</p>
+  <div>我是一个Div元素</div>
+  <p>我是一个段落</p>
+  <div>我是一个Div元素</div>
+  <p>我是一个段落</p>
+  <div>我是一个Div元素</div>
+  <p>我是一个段落</p>
+</div>
+
+<div class="lastoftype">
+  <p>我是第一个段落</p>
+  <p>我是第二个段落</p>
+  <p>我是第三个段落</p>
+  <div>我是第一个Div元素</div>
+  <div>我是第二个Div元素</div>
+  <div>我是第三个Div元素</div>
+</div>
+
+<div class="nthlastoftype">
+  <p>我是第一个段落</p>
+  <p>我是第二个段落</p>
+  <p>我是第三个段落</p>
+  <p>我是第四个段落</p>
+  <p>我是第五个段落</p>
+  <div>我是一个Div元素</div>
+  <p>我是第六个段落</p>
+  <p>我是第七个段落</p>
+</div>
+<div class="onlychild">
+	<ul>
+	  <li>Item1</li>
+	  <li>Item2</li>
+	  <li>Item3</li>
+	</ul>
+	<ul>
+	  <li>Item1</li>
+	</ul>
+	<ol>
+	  <li>Item1</li>
+	</ol>
+	<ol>
+	  <li>Item1</li>
+	  <li>Item2</li>
+	  <li>Item3</li>
+	</ol>
+</div>
+
+<div class="onlyoftype">
+  <p>我是一个段落</p>
+  <p>我是一个段落</p>
+  <p>我是一个段落</p>
+  <div>我是一个Div元素</div>
+</div>
+<div class="onlyoftype">
+  <div>我是一个Div</div>
+  <ul>
+    <li>我是一个列表项</li>
+  </ul>
+  <p>我是一个段落</p>
+</div>
+</body>
+</html>
