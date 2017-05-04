@@ -1,0 +1,100 @@
+/* 语法：
+ * border-radius: 5px 4px 3px 2px; 四个半径值分别是左上角、右上角、右下角和左下角，顺时针
+ */
+.radius li{
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+/* 【实心上半圆】
+ * 方法：把高度(height)设为宽度（width）的一半，
+ * 并且只设置左上角和右上角的半径与元素的高度一致（大于也是可以的）
+*/
+.upside-circle{
+  height: 50px;
+  width: 100px;
+  background: #9da;
+  border-radius: 50px 50px 0 0;/*半径至少设置为height的值*/
+}
+/* 【实心圆】
+ * 方法：把宽度（width）与高度(height)值设置为一致（也就是正方形），
+ * 并且四个圆角值都设置为它们值的一半
+*/
+.circle {
+  height: 100px;
+  width: 100px;
+  background: #9da;
+  border-radius: 50px;/*四个圆角值都设置为宽度或高度值的一半*/
+}
+/* 【实心左半圆】*/
+.semi-circle{ 
+  height:100px;
+  width:50px;
+  background:#9da;
+  border-radius:50px 0 0 50px;
+}
+
+/* 语法：
+ * box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径] [阴影扩展半径] [阴影颜色] [投影方式]
+ */
+.shadow li {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+/*外阴影*/
+.shadow .boxshadow-outset {
+  width:100px;
+  height:100px;
+  box-shadow: 4px 2px 6px #333;
+}
+/*内阴影*/
+.shadow .boxshadow-inset {
+  width:100px;
+  height:100px;
+  box-shadow: 4px 2px 6px #333 inset;
+}
+/*添加多个阴影*/
+.shadow .boxshadow-multi {
+  width: 100px;
+  height: 100px;
+  box-shadow: 4px 2px 6px #f00, -4px -2px 6px #000, 0 0 12px 5px #33CC00 inset;
+}
+/* 语法：
+ * box-image: url(border.png) 70 70 70 70 repeat
+ */
+.image li {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.borderimg-repeat {
+   background:#F4FFFA;
+   width:210px; height:210px; border:70px solid #ddd;
+   border-image:url(borderimg.png) 70 repeat  
+}
+.borderimg-round {
+  width: 170px;
+  height: 170px;
+  border: 70px solid;
+  background: #F4FFFA;
+  border-image: url(borderimg.png) 70 round;
+}
+.borderimg-stretch {
+  width: 170px;
+  height: 170px;
+  border: 70px solid;
+  background: #F4FFFA;
+  border-image: url(borderimg.png) 70 stretch;
+}
+.borderimg-frames {
+	height: 100px;
+	line-height: 100px;
+	width: 450px;
+	border: 15px solid #ccc;
+	border-image: url(http://img.mukewang.com/52e22a1c0001406e03040221.jpg)  17 repeat;
+	font-size: 30px;
+	text-align: center;
+}
