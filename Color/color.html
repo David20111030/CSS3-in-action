@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <title>颜色相关</title>
+  <style type="text/css">
+	body{background:url(icon.png)}
+	.color-rgba{
+	    font-size:42px;
+	    text-align:center;
+	    font-weight:bold;
+	    background:rgba(255,255,255,0.5);
+	} 
+	.gradient {
+	  width: 400px;
+	  height: 150px;
+	  line-height: 150px;
+	  text-align: center;
+	  color: #000;
+	  font-size: 24px;
+	  background-image:linear-gradient(to left, red, orange,yellow,green,blue,indigo,violet);
+	}
+	.linear {
+	  width: 400px;
+	  height: 150px;
+	  line-height: 150px;
+	  text-align:center;
+	  color: #000;
+	  font-size:24px;
+	  background-image:linear-gradient(to bottom left,red, orange,yellow,green,blue,indigo,violet);
+	}
+</style>
+</head>
+<body>
+<p class="color-rgba">背景半透明的</p>
+<p class="gradient">从右到左的线性渐变背景</p>
+<p class="linear">右上角向左下角的线性渐变背景</p>
+</body>
+</html>
