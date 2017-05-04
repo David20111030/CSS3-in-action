@@ -1,0 +1,80 @@
+/* 设置元素背景图片的原起始位置，语法：
+ * background-origin: border-box | padding-box | content-box;
+ * 参数分别表示背景图片是从边框，还是内边距（默认值），或者是内容区域开始显示。
+*/
+.origin.wrap {
+	margin-bottom: 20px;
+    width:220px; 
+    border:20px dashed #000; 
+    padding:20px; 
+    font-weight:bold; 
+    color:#000; 
+    background:#ccc url(http://static.mukewang.com/static/img/logo_index.png) no-repeat; 
+    background-origin: content-box;
+    position: relative;
+}
+.origin.wrap span { 
+    position: absolute; 
+    left:0; 
+    top:0;
+}
+.origin .content {
+    height:80px; 
+    border:1px solid #333;
+}
+
+.clip.wrap {
+	margin-bottom: 20px;
+    width:220px; 
+    border:20px dashed #000; 
+    padding:20px; 
+    font-weight:bold; 
+    color:#000; 
+    background:#ccc url(http://static.mukewang.com/static/img/logo_index.png) no-repeat; 
+    background-origin: border-box;
+    background-clip: padding-box;
+    position: relative;
+}
+.clip.wrap span { 
+    position: absolute; 
+    left:0; 
+    top:0;
+}
+.clip .content {
+    height:80px; 
+    border:1px solid #333;
+}
+
+.size {
+	margin-bottom: 20px;
+	background: url(http://static.mukewang.com/static/img/logo_index.png) no-repeat;
+    width: 300px;
+    height: 140px;
+    border: 1px solid #999;
+    background-size:cover;
+}
+/* 多重背景
+ * 语法缩写如下：
+ * background ： [background-color] | [background-image] | [background-position][/background-size] | [background-repeat] | [background-attachment] | [background-clip] | [background-origin],...
+*/
+.multiple .dome-1 {
+	width: 300px;
+    height: 140px;
+    border: 1px solid #999;
+    
+    background-image: url(http://img.mukewang.com/54cf2365000140e600740095.jpg),
+                      url(http://img.mukewang.com/54cf238a0001728d00740095.jpg),
+                      url(http://img.mukewang.com/54cf23b60001fd9700740096.jpg);
+    background-position: left top, 100px 0, 200px 0;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    
+    margin:0 0 20px 0;
+}
+.multiple .dome-2 {
+	width: 300px;
+    height: 140px;
+    border: 1px solid #999;
+    
+    background:url(http://static.mukewang.com/static/img/logo_index.png) left top/80% 45% no-repeat, 
+               url(http://static.mukewang.com/static/img/logo_index.png) right bottom/50% 50% no-repeat;
+}
