@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8">
+<title>变形与动画</title>
+<style type="text/css">
+  .rotate {
+    margin: 100px auto;
+    width: 300px;
+    height: 200px;
+    border: 2px dotted blue;
+  }
+.rotate div{
+  width: 300px;
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  background: green;
+  color: #fff;
+  -webkit-transform: rotate(-20deg);
+  -moz-transform: rotate(-20deg);
+  transform:rotate(-20deg);
+}
+.rotate span {
+  display:block;
+ -webkit-transform: rotate(20deg);
+ -moz-transform: rotate(20deg);
+  transform:rotate(20deg);
+ }
+
+ .skew {
+  width: 300px;
+  height: 100px;
+  border: 2px dotted red;
+  margin: 30px auto;
+}
+.skew div {
+  width: 300px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  color: #fff;
+  background: orange;
+  -webkit-transform: skew(45deg);
+  -moz-transform:skew(45deg) 
+  transform:skew(45deg);
+}
+
+.scale {
+  width: 200px;
+  height: 200px;
+  border:2px dashed red;
+  margin: 100px auto;
+}
+.scale div {
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+  background: orange;
+  text-align: center;
+  color: #fff;
+}
+.scale div:hover {
+  opacity: .5;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  transform: scale(0.8);
+}
+
+.translate {
+  width: 200px;
+  height: 200px;
+  border: 2px dotted red;
+  margin: 20px auto;
+}
+.translate div {
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  background: orange;
+  color: #fff;
+  -webkit-transform: translate(50px,100px);
+  -moz-transform:translate(50px,100px);
+  transform: translate(50px,100px);
+}
+
+.translate-2 {
+  padding: 20px;
+  background:blue;
+  color:#fff;
+  position:absolute;
+  top:50%;
+  left:50%;
+  border-radius: 5px;
+  -webkit-transform:translate(-50%,-50%);
+  -moz-transform:translate(-50%,-50%);
+  transform:translate(-50%,-50%);
+}
+
+.matrix {
+  width: 300px;
+  height: 200px;
+  border: 2px dotted red;
+  margin: 40px auto;
+}
+
+.matrix div {
+  width:300px;
+  height: 200px;
+  background: orange;
+  -webkit-transform: matrix(1,0,0,1,100,100);
+  transform: matrix(1,0,0,1,100,100);
+}
+
+.origin {
+  width: 300px;
+  height: 300px;
+  float: left;
+  margin: 100px;
+  border: 2px dotted red;
+  line-height: 300px;
+  text-align: center;
+}
+.origin div {
+  background: red;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.transform-origin div {
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
+}
+.clearfix::before, .clearfix::after {
+  content: '.';
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+.clearfix::after {
+  clear:both;
+}
+.clearfix {
+	zoom: 1;
+}
+
+.transition-1 {
+  width: 200px;
+  height: 200px;
+  background-color:green;
+  margin: 20px auto;
+  -webkit-transition: background-color .5s ease .1s;
+  transition: background-color .5s ease .1s;
+}
+.transition-1:hover {
+  background-color: orange;
+}
+
+.transition-2 {
+  width: 200px;
+  height: 200px;
+  background: green;
+  margin: 20px auto;
+  -webkit-transition-property: width;
+  transition-property: width;
+  -webkit-transition-duration:.5s;
+  transition-duration:.5s;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  -webkit-transition-delay: .18s;
+  	transition-delay:.18s;
+}
+.transition-2:hover {
+  width: 400px;
+}
+
+.transition-3{ width: 300px;
+  height: 200px;
+  background-color: orange;
+  margin: 20px auto;
+  -webkit-transition-property: -webkit-border-radius;
+  transition-property: border-radius;
+  -webkit-transition-duration: .5s;
+  transition-duration: .5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  -webkit-transition-delay: .2s;
+  transition-delay: .2s;
+}
+.transition-3:hover {
+  border-radius: 20px;
+}
+
+.transition-4 {
+  width: 200px;
+  height: 200px;
+  background: red;
+  margin: 20px auto;
+  -webkit-transition-property: -webkit-border-radius;
+  transition-property: border-radius;
+  -webkit-transition-duration: .5s;
+  transition-duration: .5s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: .2s;
+  transition-delay: .2s;
+}
+.transition-4:hover {
+  border-radius: 100%;
+}
+
+.transition-5 {
+  width: 400px;
+  height: 400px;
+  margin: 20px auto;
+  border: 2px dotted red;
+}
+.transition-5 div {
+  width: 200px;
+  height: 200px;
+  background-color: orange;
+  -webkit-transition: all .28s ease-in .1s;
+  transition: all .28s ease-in .1s;
+}
+.transition-5 div:hover {
+  width: 300px;
+  height: 300px;
+  background-color: red;
+}
+</style>
+</head> 
+<body>
+<div class="rotate">
+ <div><span>（旋转rotate()）我不想旋转(^_^)</span></div>
+</div>
+<div class="skew">
+  <div><span>（扭曲skew()）我不想被扭曲(^_^)</span></div>
+</div>
+<div class="scale">
+  <div>（缩放scale()）鼠标悬浮上来，我将缩小0.8</div>
+</div>
+<div class="translate">
+  <div>（位移translate()）我向右向下移动</div>
+</div>
+<div class="translate-2">
+（位移translate()）我不知道我的宽度和高是多少，我要实现水平垂直居中    
+</div>
+<div class="matrix">
+  <div>（矩阵matrix()）矩阵实现位移</div>
+</div>
+
+<!---（改变原点位置transform-origin属性）-->
+<div class="origin ">
+  <div>原点在默认位置处</div>
+</div>
+<div class="origin transform-origin ">
+  <div>原点重置到左上角</div>
+</div>
+<div class="clearfix"></div>
+
+<div class="transition-1"><div>（transition动画1）鼠标放到我的身上来</div></div>
+<div class="transition-2"><div>（transition动画2）鼠标放到我的身上来</div></div>
+<div class="transition-3"><div>（transition动画3）鼠标放到我的身上来</div></div>
+<div class="transition-4"><div>（transition动画4）鼠标放到我的身上来</div></div>
+<div class="transition-5"><div>（transition动画5）鼠标放到我的身上来</div></div>
+<div class="transition-6"><div>（transition动画5）鼠标放到我的身上来</div></div>
+</body>
+</html>
