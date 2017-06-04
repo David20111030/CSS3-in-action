@@ -5,6 +5,9 @@
    <title>七夕言情</title>
    <link rel="stylesheet" type="text/css" href="css/style.css">
    <link rel="stylesheet" type="text/css" href="css/pageA.css">
+   <!-- <script src="./js/jquery.js"></script> -->
+   <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+   <script type="text/javascript" src='./js/jquery.transit.js'></script>
 </head>
 <body>
   <div id="content">
@@ -29,10 +32,24 @@
         <button>暂停</button>
     </div>
    </div>
-   <script src="./js/jquery.js"></script>
-   <script type="text/javascript" src='./js/jquery.transit.js'></script>
+   
    <script type="text/javascript" src='./js/common.js'></script>
+   <script type="text/javascript" src='./js/Qixi.js'></script>
    <script type="text/javascript">
+   	$(function() {
+
+	    // 开始
+	    $("button:first").click(function() {
+	        // 10秒钟 ，走到0.5 也就是页面中间位置
+	        var distX = calculateDist('x', 0.5);
+	        var distY = calculateDist('y', 0.5);
+	        walkRun(10000, distX, distY);
+	    });
+
+	})
+   </script>
+   <!-- <script type="text/javascript">
+   
    	 var swipe = Swipe($('#content'));
 
    	 // $('button').click(function(){
@@ -94,6 +111,6 @@
         // 增加暂停的样式
         $boy.addClass('pauseWalk');
     });
-   </script>
+   </script> -->
 </body>
 </html>
