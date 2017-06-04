@@ -29,6 +29,7 @@
     </div>
    </div>
    <script src="./js/jquery.js"></script>
+   <script type="text/javascript" src='./js/jquery.transit.js'></script>
    <script type="text/javascript" src='./js/common.js'></script>
    <script type="text/javascript">
    	 var swipe = Swipe($('#content'));
@@ -67,7 +68,14 @@
     
     $('button').click(function(){
         // 增加走路的CSS3关键帧规则
-        $boy.addClass('slowWalk');
+        // $boy.addClass('slowWalk');
+        //jQuery.transit插件实现
+         // $boy.transition({'left': $('#content').width() +'px'},10000,'linear',function(){});
+         //css实现
+        $boy.css({
+          'left': $('#content').width() + 'px',
+          'transition': 'all 10s linear 0s'
+        })
     });
    </script>
 </body>
