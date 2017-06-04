@@ -24,6 +24,9 @@
    	 </ul>
    	 <!--与页面根节点并列-->
    	 <div id='boy' class="charector"></div>
+   	 <div class="button">
+        <button>点击开始动画</button>
+    </div>
    </div>
    <script src="./js/jquery.js"></script>
    <script type="text/javascript" src='./js/common.js'></script>
@@ -56,6 +59,15 @@
     // 路的中间位置减去小孩的高度，25是一个修正值
     $boy.css({
         top: pathY - boyHeight + 25
+    });
+
+    // ==========================
+    //     增加精灵动画
+    // ==========================
+    
+    $('button').click(function(){
+        // 增加走路的CSS3关键帧规则
+        $boy.addClass('slowWalk');
     });
    </script>
 </body>
