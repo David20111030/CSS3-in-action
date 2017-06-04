@@ -25,7 +25,8 @@
    	 <!--与页面根节点并列-->
    	 <div id='boy' class="charector"></div>
    	 <div class="button">
-        <button>点击开始动画</button>
+        <button>开始</button>
+        <button>暂停</button>
     </div>
    </div>
    <script src="./js/jquery.js"></script>
@@ -66,16 +67,32 @@
     //     增加精灵动画
     // ==========================
     
-    $('button').click(function(){
-        // 增加走路的CSS3关键帧规则
-        // $boy.addClass('slowWalk');
-        //jQuery.transit插件实现
-         // $boy.transition({'left': $('#content').width() +'px'},10000,'linear',function(){});
-         //css实现
-        $boy.css({
-          'left': $('#content').width() + 'px',
-          'transition': 'all 10s linear 0s'
-        })
+    // $('button').click(function(){
+    //     // 增加走路的CSS3关键帧规则
+    //     // $boy.addClass('slowWalk');
+    //     //jQuery.transit插件实现
+    //      // $boy.transition({'left': $('#content').width() +'px'},10000,'linear',function(){});
+    //      //css实现
+    //     $boy.css({
+    //       'left': $('#content').width() + 'px',
+    //       'transition': 'all 10s linear 0s'
+    //     })
+    // });
+    // 开始
+    $("button:first").click(function() {
+        $boy.addClass('slowWalk').transition({
+            'left': $("#content").width() + 'px',
+        }, 10000);
+    });
+
+    // 暂停
+    $("button:last").click(function() {
+        var left = $boy.css('left');
+        // 强制做了一个改变目标left的处理
+        // 动画是要运行10秒,所以此时动画还是没有结束的
+        $boy.css('left',left);
+        // 增加暂停的样式
+        $boy.addClass('pauseWalk');
     });
    </script>
 </body>
