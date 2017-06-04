@@ -19,3 +19,13 @@ $.each(slides, function(index){
  	height: height + 'px'
  })
 })
+
+// 绑定一个时间，触发通过
+$('button').click(function(){
+	// 在5秒的时间内，移动X的位置，为2个页面单位
+	element.css({
+	  'transition-timing-function': 'linear',
+	  'transition-duration': '5000ms',
+	  'transform': 'translate3d(-'+(width*2) +'px,0px,0px)'//设置页面X轴移动
+	})
+})
