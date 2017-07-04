@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	 .plot-1 {
+	  position:absolute;
+	  background:rgb(175,50,50);
+	  width: 20px;
+	  height: 20px;
+	  border-radius: 20px;
+	  display: block;
+	  top:100px;
+	  left:500px;
+	}
+	
+	.smooth {
+	-webkit-transition:0.5s;
+	-moz-transition: 0.5s;
+	      -ms-transition: 0.5s;
+	       -o-transition: 0.5s;
+	transition: 0.5s;
+	} 
+	.plot-2 {
+  background:rgb(175,50,50);
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  display: block;
+  -webkit-transition: 0.5s;
+     -moz-transition: 0.5s;
+      -ms-transition: 0.5s;
+       -o-transition: 0.5s;
+          transition: 0.5s;
+}
+
+.plot-2:hover {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  background: blue;
+}
+
+.plot-3 {
+	  position:absolute;
+	  background:rgb(175,50,50);
+	  width: 40px;
+	  height: 40px;
+	  border-radius: 20px;
+	  display: block;
+	  top:200px;
+	  left:400px;
+	}
+</style>
+</head>
+<body>
+  <ul id="resources">
+  <li><a href="http://developer.mozilla.org">MDN</a></li>
+  <li><a href="http://html5doctor.com">HTML5 Doctor</a></li>
+  <li><a href="http://html5rocks.com">HTML5 Rocks</a></li>
+  <li><a href="http://beta.theexpressiveweb.com/">Expressive Web</a></li>
+  <li><a href="http://creativeJS.com/">CreativeJS</a></li>
+</ul>
+<div id="log"></div>
+<div class="plot-1"></div>
+<div class="plot-2"></div>
+<div class="plot-3"></div>
+<input type="checkbox" name="ss">CSS平滑过渡
+<div id="output">s:</div>
+<div id="output-3"></div>
+
+<script type="text/javascript">
+/*事件被激活后，会像猴子一样沿着DOM树从监听节点下滑到触发节点，然后再上爬回监听节点。也就是说，如果你监听了一个DOM节点，那也就等于你监听了其所有的后代节点。
+代理的意思就是只监听父节点的事件触发，以来代理对其后代节点的监听，而你需要做的只是通过 target 属性得到触发元素并作出回应
+ */
+    var resources = document.querySelector('#resources'),
+    	log = document.querySelector('#log');
+
+    resources.addEventListener('mouseover', showtarget, false);
+
+    function showtarget(ev) {
+    	var target = ev.target;
+    	if (target.tagName === 'A') {
+    		log.innerHTML = 'A link, with the href:' + target.href;
+    	}
+    	if (target.tagName === 'LI') {
+    		log.innerHTML = 'A list item';
+    	}
+    	if (target.tagName === 'UL') {
+    		log.innerHTML = 'The list itself';
+    	}
+    }
+
+    document.addEventListener('keydown', keydown, false);
+    document.addEventListener('keyup', keyup, false);
+
+    function keydown(ev) {
+    	if (time === 0) {
+    		time = ev.timeStamp;
+    		log.classList.add('animate');
+    	}
+    }
+
+    function keyup(ev) {
+    	if (time !== 0) {
+    		log.innerHTML = ev.timeStamp - time;
+    		time = 0;
+    		log.classList.remove('animate');
+    	}
+    }
+
+    /*CSS平滑效果*/
+    var plot1 = document.querySelector('.plot-1'),
+    	offset = plot1.offsetWidth / 2;
+    document.addEventListener('click', function(ev) {
+    	plot1.style.left = (ev.pageX - offset) + 'px';
+    	plot1.style.top = (ev.pageY - offset) + 'px';
+    }, false);
+
+    var cb = document.querySelector('input[type=checkbox]');
+    cb.addEventListener('click', function(ev) {
+    	plot1.classList.toggle('smooth');
+    }, false)
+
+    /*CSS过渡（动画）效果 || JavaScript中触发一个独立事件，叫transitionend。这个事件对象会有两个属性：被其所影响到的属性名propertyName，和其过渡所经历的时间elapsedTime。*/
+    var plot2 = document.querySelector('.plot-2'),
+    	output = document.querySelector('#output'),
+    	transition = 'transitionend';
+    if ('onwebkittransitionend' in window) {
+    	transition = 'webkitTransitionEnd'; // webkit
+    }
+    if ('onotransitionend' in plot2 || navigator.appName == 'Opera') {
+    	transition = 'oTransitionEnd'; // opera
+    }
+    plot2.addEventListener(transition, function(ev) {
+    	output.innerHTML += ev.propertyName + ':' + ev.elapsedTime + 's ';
+    }, false);
+
+    /*
+    在用户在拖拽元素时，给元素来个计算角度、距离和速度差
+     */
+    var plot = document.querySelector('.plot-3'),
+    	log3 = document.querySelector('#output-3'),
+    	offset = plot.offsetWidth / 2,
+    	pressed = false,
+    	start = 0,
+    	x = 0,
+    	y = 0,
+    	end = 0,
+    	ex = 0,
+    	ey = 0,
+    	mx = 0,
+    	my = 0,
+    	duration = 0,
+    	dist = 0,
+    	angle = 0;
+
+    document.addEventListener('mousedown', onmousedown, false);
+    document.addEventListener('mouseup', onmouseup, false);
+    document.addEventListener('mousemove', onmousemove, false);
+
+    function onmousedown(ev) {
+    	if (start === 0 && x === 0 && y === 0) {
+    		start = ev.timeStamp;
+    		x = ev.clientX;
+    		y = ev.clientY;
+    		moveplot(x, y);
+    		pressed = true;
+    	}
+    }
+
+    function onmouseup(ev) {
+    	end = ev.timeStamp;
+    	duration = end - start;
+    	ex = ev.clientX;
+    	ey = ev.clientY;
+    	mx = ex - x;
+    	my = ey - y;
+    	dist = Math.sqrt(mx * mx + my * my);
+    	start = x = y = 0;
+    	pressed = false;
+    	angle = Math.atan2(my, mx) * 180 / Math.PI;
+    	log3.innerHTML = '<strong>' + (dist >> 0) + '</strong> pixels in <strong>' +
+    		duration + '</strong> ms ( <strong>' +
+    		twofloat(dist / duration) + '</strong> pixels/ms)' +
+    		' at <strong>' + twofloat(angle) +
+    		'</strong> degrees';
+    }
+
+    function onmousemove(ev) {
+    	if (pressed) {
+    		moveplot(ev.pageX, ev.pageY);
+    	}
+    }
+
+    function twofloat(val) {
+    	return Math.round((val * 100)) / 100;
+    }
+
+    function moveplot(x, y) {
+    	plot.style.left = (x - offset) + 'px';
+    	plot.style.top = (y - offset) + 'px';
+    }
+</script>
+</body>
+</html>
